@@ -6,6 +6,7 @@ public class EarthQuakeClientResponse {
     private String type;
     private Metadata metadata;
     private ArrayList< Object > features = new ArrayList < Object > ();
+    private ArrayList < Object > bbox = new ArrayList < Object > ();
 
 
     public String getType() {
@@ -40,5 +41,5 @@ public class EarthQuakeClientResponse {
         this.bbox = bbox;
     }
 
-    private ArrayList < Object > bbox = new ArrayList < Object > ();
+
 }
