@@ -38,10 +38,22 @@ public class WeatherController {
     public Feature getFeatureByID(@PathVariable String featureId){
         return weatherClientService.getFeatureByID(featureId);
     }
-
+//post get,satus code-controller
     @GetMapping("/save")
     public void saveData(){
         weatherClientService.saveData();
 
     }
+
+    @GetMapping("/placeInfo")
+    public String getPlaceInfo(){
+        return weatherClientService.getPlaceInfo();
+
+    }
+
+    @GetMapping("/getId")
+    public String getId(){
+        return weatherClientService.getId();
+    }
+
 }

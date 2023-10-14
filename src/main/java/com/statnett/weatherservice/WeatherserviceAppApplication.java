@@ -12,6 +12,11 @@ public class WeatherserviceAppApplication {
 		SpringApplication.run(WeatherserviceAppApplication.class, args);
 	}
 
+	@Bean
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
+	}
+
 
 
 }

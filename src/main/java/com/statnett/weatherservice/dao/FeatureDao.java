@@ -16,14 +16,13 @@ public class FeatureDao {
     @Column(name="id")
     private String id;
     private String type;
-    @OneToOne
-    @JoinColumn(name="id")
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="properies_id",referencedColumnName = "id")
     private PropertiesDao properties;
-    @OneToOne
-    @JoinColumn(name="id")//adding id for mapping
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="geometry_id",referencedColumnName = "id")//adding id for mapping
     private GeometryDao geometry;
-
-
-
 
 }

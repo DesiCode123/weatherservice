@@ -1,9 +1,6 @@
 package com.statnett.weatherservice.dao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +20,7 @@ public class GeometryDao {
     private String type;
     private List<String> coordinates;
 
-    @OneToOne(mappedBy = "geometry")
+    @OneToOne(mappedBy = "geometry",cascade = CascadeType.PERSIST)
     private FeatureDao featureDao;
 
 }
