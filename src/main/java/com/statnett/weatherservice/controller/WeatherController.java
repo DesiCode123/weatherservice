@@ -19,41 +19,30 @@ public class WeatherController {
     WeatherClientService weatherClientService;
 
     @GetMapping("/getAll")
-    public EarthQuakeClientResponse getEarthquakeData(){
+    public EarthQuakeClientResponse getEarthquakeData() {
         return weatherClientService.getEarthquakeData();
     }
 
     @GetMapping("/metadataInfo")
-    public Metadata getMetaDataInfo(){
+    public Metadata getMetaDataInfo() {
         return weatherClientService.getMetaDataInfo();
 
     }
 
     @GetMapping("/listOfFeatures")
-    public List<Feature> getListOfFeatures(){
+    public List<Feature> getListOfFeatures() {
         return weatherClientService.getListOfFeatures();
-        }
+    }
 
     @GetMapping("/findById/{featureId}")
-    public Feature getFeatureByID(@PathVariable String featureId){
+    public Feature getFeatureByID(@PathVariable String featureId) {
         return weatherClientService.getFeatureByID(featureId);
     }
-//post get,satus code-controller
+
+    //post get,satus code-controller
     @GetMapping("/save")
-    public void saveData(){
+    public void saveData() {
         weatherClientService.saveData();
 
     }
-
-    @GetMapping("/placeInfo")
-    public String getPlaceInfo(){
-        return weatherClientService.getPlaceInfo();
-
-    }
-
-    @GetMapping("/getId")
-    public String getId(){
-        return weatherClientService.getId();
-    }
-
 }

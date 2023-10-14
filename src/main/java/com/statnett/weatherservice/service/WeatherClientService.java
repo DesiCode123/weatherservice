@@ -68,27 +68,5 @@ public class WeatherClientService {
         }
     }
 
-    public String getPlaceInfo(){
-        String url1 = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson";
-        String earthQuakeClientResponse3 = restTemplate.getForObject(url1, String.class);
-        String[] array = earthQuakeClientResponse3.split("\\{");
-        String[] array2 = array[4].split(":");
-        String[] array3 = array2[2].split(",");
-        System.out.println(array3[0].concat(array3[1]));
-
-        System.out.println(array[4]);
-        System.out.println(array2[2]);
-        return array3[0].concat(array3[1]);
-    }
-
-    public String getId(){
-        String url1 = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson";
-        String earthQuakeClientResponse5 = restTemplate.getForObject(url1, String.class);
-        String[] array4 = earthQuakeClientResponse5.split("},");
-        String[] array5 = array4[3].split(":");
-        String[] array6 = array4[3].split(":");
-        System.out.println(array6[1]);
-        return array6[1];
-    }
 
 }
