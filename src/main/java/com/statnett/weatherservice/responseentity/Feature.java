@@ -1,9 +1,20 @@
-package com.statnett.weatherservice.earthquakesentity;
+package com.statnett.weatherservice.responseentity;
 
 public class Feature {
     private String type;
     private Properties properties;
+    private Geometry geometry;
     private String id;
+
+    public Geometry getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
+    }
+
+
 
     public String getType() {
         return type;

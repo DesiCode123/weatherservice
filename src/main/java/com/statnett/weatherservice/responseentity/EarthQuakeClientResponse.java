@@ -1,12 +1,13 @@
-package com.statnett.weatherservice.earthquakesentity;
+package com.statnett.weatherservice.responseentity;
 
 import java.util.ArrayList;
 
 public class EarthQuakeClientResponse {
     private String type;
     private Metadata metadata;
-    private ArrayList< Object > features = new ArrayList < Object > ();
-    private ArrayList < Object > bbox = new ArrayList < Object > ();
+    private ArrayList< Feature > features = new ArrayList < Feature>() ;
+
+    private ArrayList < Object > bbox = new ArrayList < Object> ();
 
 
     public String getType() {
@@ -25,11 +26,11 @@ public class EarthQuakeClientResponse {
         this.metadata = metadata;
     }
 
-    public ArrayList<Object> getFeatures() {
+    public ArrayList<Feature> getFeatures() {
         return features;
     }
 
-    public void setFeatures(ArrayList<Object> features) {
+    public void setFeatures(ArrayList<Feature> features) {
         this.features = features;
     }
 

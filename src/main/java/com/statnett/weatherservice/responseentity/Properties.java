@@ -1,4 +1,4 @@
-package com.statnett.weatherservice.earthquakesentity;
+package com.statnett.weatherservice.responseentity;
 
 public class Properties {
     private Double mag;
