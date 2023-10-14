@@ -5,10 +5,16 @@ import com.statnett.weatherservice.dao.GeometryDao;
 import com.statnett.weatherservice.dao.PropertiesDao;
 import com.statnett.weatherservice.responseentity.Feature;
 import org.springframework.stereotype.Component;
+import com.statnett.weatherservice.exception.FeatureMappingException;
 
 @Component
 public class FeatureMapper {
-    public FeatureDao mapFeatureObject(Feature feature){
+
+    public FeatureDao mapFeatureObject(Feature feature) {
+        if (feature == null) {
+            throw new FeatureMappingException("Provided feature object is null.");
+        }
+
         FeatureDao featureDao = new FeatureDao();
         GeometryDao geometryDao = new GeometryDao();
         PropertiesDao propertiesDao = new PropertiesDao();
@@ -29,9 +35,5 @@ public class FeatureMapper {
         featureDao.setProperties(propertiesDao);
 
         return featureDao;
-
     }
-
-    }
-
-
+}

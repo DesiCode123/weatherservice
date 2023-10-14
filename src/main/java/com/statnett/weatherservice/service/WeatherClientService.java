@@ -1,21 +1,21 @@
 package com.statnett.weatherservice.service;
 
 import com.statnett.weatherservice.dao.FeatureDao;
-import com.statnett.weatherservice.dao.GeometryDao;
-import com.statnett.weatherservice.dao.PropertiesDao;
+import com.statnett.weatherservice.exception.FeatureMappingException;
 import com.statnett.weatherservice.responseentity.EarthQuakeClientResponse;
 import com.statnett.weatherservice.responseentity.Feature;
+import com.statnett.weatherservice.responseentity.Geometry;
 import com.statnett.weatherservice.responseentity.Metadata;
 import com.statnett.weatherservice.mapperutill.FeatureMapper;
 import com.statnett.weatherservice.respository.FeatureDaoRepository;
 import com.statnett.weatherservice.respository.GeometryDaoRepository;
 import com.statnett.weatherservice.respository.PropertiesDaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeatherClientService {
@@ -56,17 +56,22 @@ public class WeatherClientService {
                 .findFirst().get();
     }
 
-    public void saveData() {
+    public void saveData() throws FeatureMappingException {
         List<Feature> features = getListOfFeatures();
+        if (features == null || features.isEmpty()) {
+            throw new FeatureMappingException("List of features is either null or empty.");
+        }
         for (int i = 0; i < features.size(); i++) {
             FeatureDao featureDao = featureMapper.mapFeatureObject(features.get(i));
-
+        try {
             propertiesDaoRepository.save(featureDao.getProperties());
             geometryDaoRepository.save(featureDao.getGeometry());
             featureDaoRepository.save(featureDao);
+        } catch (Exception e){
+            throw new FeatureMappingException("Error occurred while mapping the feature object.");
+        }
 
         }
     }
-
 
 }
