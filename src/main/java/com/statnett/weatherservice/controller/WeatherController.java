@@ -1,5 +1,6 @@
 package com.statnett.weatherservice.controller;
 
+import com.statnett.weatherservice.dao.FeatureDao;
 import com.statnett.weatherservice.responseentity.EarthQuakeClientResponse;
 import com.statnett.weatherservice.responseentity.Feature;
 import com.statnett.weatherservice.responseentity.Geometry;
@@ -33,15 +34,15 @@ public class WeatherController {
 
 
     @GetMapping("/listOfFeatures")
-    public List<Feature> getListOfFeatures() {
+    public List<FeatureDao> getListOfFeatures() {
 
-        return weatherClientService.getListOfFeatures();
+        return weatherClientService.getListOfFeatureDao();
     }
 
     @GetMapping("/findById/{featureId}")
     public ResponseEntity<Object> getFeatureByID(@PathVariable String featureId) {
         try {
-            Feature feature = weatherClientService.getFeatureByID(featureId);
+            FeatureDao feature = weatherClientService.getFeatureByID(featureId);
 
             if (feature != null) {
                 return new ResponseEntity<>(feature, HttpStatus.OK);

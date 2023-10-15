@@ -1,5 +1,6 @@
 package com.statnett.weatherservice.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class PropertiesDao {
 
 
     @OneToOne(mappedBy = "properties",cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private FeatureDao featureDao;
 
 }

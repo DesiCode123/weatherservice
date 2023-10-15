@@ -11,6 +11,7 @@ import com.statnett.weatherservice.respository.GeometryDaoRepository;
 import com.statnett.weatherservice.respository.PropertiesDaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -34,7 +35,8 @@ public class WeatherClientService {
 
     public EarthQuakeClientResponse getEarthquakeData() {
         String url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson";
-        EarthQuakeClientResponse earthQuakeClientResponse = restTemplate.getForObject(url, EarthQuakeClientResponse.class);
+         EarthQuakeClientResponse earthQuakeClientResponse = restTemplate.getForObject(url, EarthQuakeClientResponse.class);
+        //MultivalueHashMap
 
         return earthQuakeClientResponse;
     }
@@ -44,17 +46,21 @@ public class WeatherClientService {
         return getEarthquakeData().getMetadata();
     }
 
+    public FeatureDao getFeatureByID(String id) {
+        return featureDaoRepository.findAll().stream().filter(featureDao -> featureDao.getId().equals(id)).findFirst().get();
+
+    }
+
+    public List<FeatureDao> getListOfFeatureDao() {
+
+        return featureDaoRepository.findAll();
+    }
+
     public List<Feature> getListOfFeatures() {
 
         return getEarthquakeData().getFeatures();
     }
 
-    public Feature getFeatureByID(String id) {
-        return getEarthquakeData().getFeatures()
-                .stream()
-                .filter(feature -> feature.getId().equals(id))
-                .findFirst().get();
-    }
 
     public void saveData() throws FeatureMappingException {
         List<Feature> features = getListOfFeatures();

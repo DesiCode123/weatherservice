@@ -1,5 +1,6 @@
 package com.statnett.weatherservice.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class GeometryDao {
     private List<String> coordinates;
 
     @OneToOne(mappedBy = "geometry",cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private FeatureDao featureDao;
 
 }
