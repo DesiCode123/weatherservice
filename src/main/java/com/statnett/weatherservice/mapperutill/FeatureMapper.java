@@ -23,6 +23,8 @@ public class FeatureMapper {
         propertiesDao.setId(feature.getId());
         propertiesDao.setMag(feature.getProperties().getMag());
         propertiesDao.setPlace(feature.getProperties().getPlace());
+        propertiesDao.setDetail(feature.getProperties().getDetail());
+        propertiesDao.setStatus(feature.getProperties().getStatus());
 
         geometryDao.setId(feature.getId());
         geometryDao.setType(feature.getGeometry().getType());

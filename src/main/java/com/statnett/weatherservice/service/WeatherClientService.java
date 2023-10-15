@@ -4,7 +4,6 @@ import com.statnett.weatherservice.dao.FeatureDao;
 import com.statnett.weatherservice.exception.FeatureMappingException;
 import com.statnett.weatherservice.responseentity.EarthQuakeClientResponse;
 import com.statnett.weatherservice.responseentity.Feature;
-import com.statnett.weatherservice.responseentity.Geometry;
 import com.statnett.weatherservice.responseentity.Metadata;
 import com.statnett.weatherservice.mapperutill.FeatureMapper;
 import com.statnett.weatherservice.respository.FeatureDaoRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class WeatherClientService {
@@ -41,11 +39,13 @@ public class WeatherClientService {
         return earthQuakeClientResponse;
     }
 
-    public Metadata getMetaDataInfo() {
+    public Metadata getMetaDataInfo(String id) {
+
         return getEarthquakeData().getMetadata();
     }
 
     public List<Feature> getListOfFeatures() {
+
         return getEarthquakeData().getFeatures();
     }
 

@@ -25,8 +25,8 @@ public class WeatherController {
     }
 
     @GetMapping("/metadataInfo")
-    public Metadata getMetaDataInfo() {
-        return weatherClientService.getMetaDataInfo();
+    public Metadata getMetaDataInfo(@RequestParam String id) {
+        return weatherClientService.getMetaDataInfo(id);
 
     }
 
@@ -34,6 +34,7 @@ public class WeatherController {
 
     @GetMapping("/listOfFeatures")
     public List<Feature> getListOfFeatures() {
+
         return weatherClientService.getListOfFeatures();
     }
 
